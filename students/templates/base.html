@@ -1,0 +1,23 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Student Management{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+<body>
+  <header>
+    <a class="brand" href="{% url 'dashboard' %}">Student Management</a>
+    <nav>
+      <a href="{% url 'dashboard' %}">Dashboard</a>
+      <a href="{% url 'student_list' %}">Students</a>
+      <a href="{% url 'student_add' %}">Add Student</a>
+      <a href="{% url 'course_list' %}">Courses</a>
+      <a href="{% url 'course_add' %}">Add Course</a>
+      <a href="{% url 'admin:index' %}">Admin</a>
+    </nav>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>

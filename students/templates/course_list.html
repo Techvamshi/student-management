@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Courses</h1>
+<p><a class="btn" href="{% url 'course_add' %}">Add course</a></p>
+{% if courses %}
+<div class="scroll">
+<table>
+  <tr><th>Course</th><th>Duration</th><th>Description</th><th>Students</th><th>Actions</th></tr>
+  {% for c in courses %}
+  <tr>
+    <td>{{ c.name }}</td><td>{{ c.duration }}</td><td>{{ c.description|default:"-" }}</td><td>{{ c.student_count }}</td>
+    <td class="actions">
+      <a href="{% url 'course_edit' c.pk %}">Edit</a>
+      <a href="{% url 'course_delete' c.pk %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% else %}
+<p>No courses yet. Add one to start enrolling students.</p>
+{% endif %}
+{% endblock %}

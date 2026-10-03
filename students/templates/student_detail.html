@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ student.name }}</h1>
+<div class="scroll">
+<table class="detail">
+  <tr><th>Student ID</th><td>{{ student.student_id }}</td></tr>
+  <tr><th>Student name</th><td>{{ student.name }}</td></tr>
+  <tr><th>Email</th><td>{{ student.email }}</td></tr>
+  <tr><th>Phone number</th><td>{{ student.phone }}</td></tr>
+  <tr><th>Date of birth</th><td>{{ student.date_of_birth }}</td></tr>
+  <tr><th>Gender</th><td>{{ student.gender }}</td></tr>
+  <tr><th>Course</th><td>{{ student.course|default:"None" }}</td></tr>
+  <tr><th>Department</th><td>{{ student.department }}</td></tr>
+  <tr><th>Joining date</th><td>{{ student.joining_date }}</td></tr>
+</table>
+</div>
+<p class="buttons">
+  <a class="btn" href="{% url 'student_edit' student.pk %}">Edit student</a>
+  <a class="btn outline" href="{% url 'student_delete' student.pk %}">Delete student</a>
+  <a class="btn outline" href="{% url 'student_list' %}">Back to students</a>
+</p>
+{% endblock %}

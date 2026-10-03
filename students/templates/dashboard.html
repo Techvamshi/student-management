@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+
+<div class="stats">
+  <div class="stat"><span class="num">{{ total_students }}</span>Total students</div>
+  <div class="stat"><span class="num">{{ total_courses }}</span>Total courses</div>
+</div>
+
+<h2>Recent students</h2>
+{% if recent_students %}
+<div class="scroll">
+<table>
+  <tr><th>ID</th><th>Name</th><th>Course</th><th>Joined</th><th></th></tr>
+  {% for s in recent_students %}
+  <tr>
+    <td>{{ s.student_id }}</td><td>{{ s.name }}</td><td>{{ s.course|default:"None" }}</td><td>{{ s.joining_date }}</td>
+    <td class="actions"><a href="{% url 'student_detail' s.pk %}">View</a></td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% else %}
+<p>No students yet. <a href="{% url 'student_add' %}">Add the first student</a>.</p>
+{% endif %}
+
+<h2>Students per course</h2>
+{% if courses %}
+<div class="scroll">
+<table>
+  <tr><th>Course</th><th>Students</th></tr>
+  {% for c in courses %}<tr><td>{{ c.name }}</td><td>{{ c.student_count }}</td></tr>{% endfor %}
+</table>
+</div>
+{% else %}
+<p>No courses yet. <a href="{% url 'course_add' %}">Add a course</a> before adding students.</p>
+{% endif %}
+{% endblock %}
